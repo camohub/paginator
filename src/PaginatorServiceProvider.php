@@ -19,6 +19,7 @@ class PaginatorServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->app->bind('paginator', Paginator\Paginator::class);
+		$this->app->bind('camohubPaginator', Paginator\Paginator::class);
+		$this->loadViewsFrom( __DIR__ . '/resources/views', 'camohubPaginator');
 	}
 }

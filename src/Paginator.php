@@ -3,25 +3,105 @@
 namespace Camohub\Paginator;
 
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class Paginator
 {
 
-	public function __construct()
+	/** @var  LengthAwarePaginator $laraPaginator */
+	public $laraPaginator;
+
+	/** @var  Request $request */
+	public $request;
+
+	/** @var  Collection  $model */
+	public $model;
+
+	/** @var  String $routeName */
+	public $routeName;
+
+	/** @var  array $routeName */
+	public $routeParams;
+
+	/** @var  string $routeName */
+	public $pageParam;
+
+	/** @var  int $perPage */
+	public $perPage;
+
+	/** @var  int */
+	public $totalCount;
+
+	/** @var  int */
+	public $skip;
+
+	/** @var  Collection */
+	public $items;
+
+
+	public function __construct(Request $request, $model, $routeName, $routeParams = [], $perPage = 2, $pageParam = 'page')
 	{
-		Log::debug('*******************************************************');
-		Log::debug(' This is Camohub\Paginator::__construct()');
-		Log::debug('*******************************************************');
+		$this->request = $request;
+		$this->model = $model;
+		$this->routeName = $routeName;
+		$this->routeParams = $routeParams;
+		$this->pageParam = $pageParam;
+		$this->perPage = $perPage;
+
+		$this->currentPage = $request->route()->parameter($pageParam);
+
+		Log::debug($this->currentPage);
+
+		$this->totalCount = $this->model->count();
+		$this->skip = $this->perPage * $this->currentPage - $this->perPage;
+		$this->items = $this->model->skip($this->skip)->take($this->perPage)->get();
 	}
 
 
-	public function test()
+
+	public function render()
 	{
-		Log::debug('*******************************************************');
-		Log::debug(' This is Camohub\Paginator::test()');
-		Log::debug('*******************************************************');
+		$pageCount = (int) ceil($this->totalCount / $this->perPage);
+		$lastPage = 1 + max(0, $pageCount - 1);
+
+		if ($this->totalCount / $this->perPage < 2)
+		{
+			$steps = array($this->currentPage);
+		}
+		else
+		{
+			$arr = range(max(1, $this->currentPage - 3), min($lastPage, $this->currentPage + 3));
+			$this->totalCount = 4;
+			$quotient = ($pageCount - 1) / $this->totalCount;
+
+			for ($i = 0; $i <= $this->totalCount; $i++)
+			{
+				$arr[] = round($quotient * $i) + 1;
+			}
+			sort($arr);
+			$steps = array_values(array_unique($arr));
+		}
+
+		return view('camohubPaginator::base', [
+			'steps' => $steps,
+			'pageCount' => $pageCount,
+			'currentPage' => $this->currentPage,
+			'lastPage' => $lastPage,
+			'routeName' => $this->routeName,
+			'routeParams' => $this->routeParams,
+			'pageParam' => $this->pageParam,
+		]);
 	}
+
+
+	public function getItems()
+	{
+		return $this->items;
+	}
+
 
 }
