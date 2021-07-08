@@ -15,4 +15,5 @@ class Paginator
 		Log::debug(' This is Camohub\Paginator test.');
 		Log::debug('*******************************************************');
 	}
+
 }
