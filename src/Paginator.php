@@ -43,8 +43,14 @@ class Paginator
 	public $items;
 
 
-	public function __construct(Request $request, $model, $routeName, $routeParams = [], $perPage = 2, $pageParam = 'page')
-	{
+	public function __construct(
+		Request $request,
+		$model,
+		$routeName,
+		$routeParams = [],
+		$perPage = 2,
+		$pageParam = 'page'
+	) {
 		$this->request = $request;
 		$this->model = $model;
 		$this->routeName = $routeName;
@@ -52,9 +58,7 @@ class Paginator
 		$this->pageParam = $pageParam;
 		$this->perPage = $perPage;
 
-		$this->currentPage = $request->route()->parameter($pageParam);
-
-		Log::debug($this->currentPage);
+		$this->currentPage = $request->route()->parameter($pageParam) ?: ($request->query($pageParam) ?: 1);
 
 		$this->totalCount = $this->model->count();
 		$this->skip = $this->perPage * $this->currentPage - $this->perPage;
