@@ -1,6 +1,6 @@
 <?php
 
-namespace Camohub;
+namespace Camohub\Paginator;
 
 
 use Illuminate\Support\Facades\Log;
