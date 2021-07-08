@@ -1,6 +1,6 @@
 <?php
 
-namespace Camohub\Paginator;
+namespace Camohub\Paginator\Paginator;
 
 
 use Illuminate\Support\ServiceProvider;
