@@ -52,7 +52,7 @@ class Paginator
 		$model,
 		$routeName,
 		$routeParams = [],
-		$perPage = 2,
+		$perPage = 15,
 		$pageParam = 'page'
 	) {
 		$this->request = $request;
