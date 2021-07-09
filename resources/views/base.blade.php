@@ -14,7 +14,7 @@
 			@endif
 
 			@foreach( $steps as $step )
-				@if( strpos('space', $step) !== FALSE ) )
+				@if( strpos((string)$step, 'space') !== FALSE )
 					<li class="page-item disabled">
 						<span class="page-link">…</span>
 					</li>
