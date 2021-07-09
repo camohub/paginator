@@ -1,7 +1,7 @@
 
 @if( $pageCount > 1)
 <nav>
-	<ul class="paginator">
+	<ul class="pagination">
 		@if( $currentPage === 1 )
 			<li class="page-item disabled">
 				<span class="page-link">«</span>
