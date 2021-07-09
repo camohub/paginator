@@ -5,15 +5,10 @@ namespace Camohub\Paginator;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class Paginator
 {
-
-	/** @var  LengthAwarePaginator $laraPaginator */
-	public $laraPaginator;
 
 	/** @var  Request $request */
 	public $request;
