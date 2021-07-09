@@ -1,30 +1,45 @@
 
 @if( $pageCount > 1)
-	<div class="paginator">
+<nav>
+	<ul class="paginator">
 		@if( $currentPage === 1 )
-			<span class="button">«</span>
+			<li class="page-item disabled">
+				<span class="page-link">«</span>
+			</li>
 		@else
-			<?php $params = array_merge($routeParams, [$pageParam => $currentPage - 1]); ?>
-			<a href="{{route($routeName, $params)}}">«</a>
+			<?php $params = array_merge($routeParams, [$pageParam => max(1, $currentPage - 1)]); ?>
+			<li class="page-item">
+				<a href="{{route($routeName, $params)}}" class="page-link">«</a>
+			</li>
 		@endif
 
 		@foreach( $steps as $step )
 			@if( $step == $currentPage )
-				<span class="current">{{$step}}</span>
+				<li class="page-item">
+					<span class="page-link active">{{$step}}</span>
+				</li>
 			@else
 				<?php $params = array_merge($routeParams, [$pageParam => $step]); ?>
-				<a href="{{route($routeName, $params)}}">{{$step}}</a>
+				<li class="page-item">
+					<a href="{{route($routeName, $params)}}" class="page-link">{{$step}}</a>
+				</li>
 			@endif
 			@if( $loop->iteration > $step )
-				<span>…</span>
+				<li class="page-item disabled">
+					<span class="page-link">…</span>
+				</li>
 			@endif
 		@endforeach
 
 		@if( $currentPage === $lastPage )
-			<span class="button">»</span>
+			<li class="page-item disabled"></li>
+			<span class="page-link">»</span>
 		@else
 			<?php $params = array_merge($routeParams, [$pageParam => $step]); ?>
-			<a href="{{route($routeName, $params)}}">»</a>
+			<li class="page-item">
+				<a class="page-link" href="{{route($routeName, $params)}}">»</a>
+			</li>
 		@endif
-	</div>
+	</ul>
+</nav>
 @endif
