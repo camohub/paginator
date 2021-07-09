@@ -43,6 +43,10 @@ class Paginator
 	public $items;
 
 
+	/** @var int  */
+	public $sideItemsCount = 3;
+
+
 	public function __construct(
 		Request $request,
 		$model,
@@ -69,25 +73,24 @@ class Paginator
 
 	public function render()
 	{
-		$pageCount = (int) ceil($this->totalCount / $this->perPage);
-		$lastPage = 1 + max(0, $pageCount - 1);
+		$pageCount = $lastPage = (int) ceil($this->totalCount / $this->perPage);
 
 		if ($pageCount < 2)
 		{
-			$steps = array($this->currentPage);
+			$steps = [1];
 		}
 		else
 		{
-			$arr = range(max(1, $this->currentPage - 3), min($lastPage, $this->currentPage + 3));
-			$this->totalCount = 4;
-			$quotient = ($pageCount - 1) / $this->totalCount;
+			$min = max(1, $this->currentPage - $this->sideItemsCount);
+			$max = min($lastPage, $this->currentPage + $this->sideItemsCount);
+			$currentWindow = range($min, $max);
+			if( $min > 3 ) array_unshift($currentWindow, 'space1');
+			if( $max < $pageCount - 2 ) array_push($currentWindow, 'space2');  // Has to be unique because of array_unique()
 
-			for ($i = 0; $i <= $this->totalCount; $i++)
-			{
-				$arr[] = round($quotient * $i) + 1;
-			}
-			sort($arr);
-			$steps = array_values(array_unique($arr));
+			$steps = [1, 2];
+			$steps = array_merge($steps, $currentWindow);
+			$steps = array_merge($steps, [$pageCount - 1, $pageCount]);
+			$steps = array_unique($steps);
 		}
 
 		return view('camohubPaginator::base', [
@@ -106,6 +109,5 @@ class Paginator
 	{
 		return $this->items;
 	}
-
 
 }
