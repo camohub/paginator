@@ -68,7 +68,8 @@ Paginator requires 4 non optional parameters.
 4. Route parameters
 
 In addition there are few optional parameters which can be used to configure the paginator.
-1. pageParam - the name of the route parameter which represents the page. Default is "page"
+1. pageParam - the name of the route parameter which represents the page. Default is "page".
+Packege will look for `$request->route()->parameter($pageParam)` or `$request->query($pageParam)`
 2. perPage - items per page
 3. sideItemsCount - the number it items around the current page in paginator. It is ekvivalent 
 of Laravel native ->onEachSide() paginator method. 
