@@ -61,17 +61,17 @@ $this->items = $this->model->skip($this->skip)->take($this->perPage)->get();
 Options
 -----------
 
-Paginator requires 4 non optional parameters. 
+Paginator requires 3 non optional parameters. 
 1. Request object
 2. Query builder / model
 3. Route name
-4. Route parameters
 
 In addition there are few optional parameters which can be used to configure the paginator.
-1. pageParam - the name of the route parameter which represents the page. Default is "page".
+1. Route parameters - route paremeters without page parameter. Page param will be merged in template. Default is [].
+2. pageParam - the name of the route parameter which represents the page. Default is "page".
 Packege will look for `$request->route()->parameter($pageParam)` or `$request->query($pageParam)`
-2. perPage - items per page
-3. sideItemsCount - the number it items around the current page in paginator. It is ekvivalent 
+3. perPage - items per page
+4. sideItemsCount - the number it items around the current page in paginator. It is ekvivalent 
 of Laravel native ->onEachSide() paginator method. 
 
 You can override the whole paginator with simple MyPaginator extends Paginator 
