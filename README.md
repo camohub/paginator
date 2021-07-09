@@ -31,7 +31,6 @@ Lets imagine a controller for articles with route
 Route::get('/{categorySlug}/{page?}', 'ArticleController@index')->name('articles');
 ```
 The index action displays all articles in required category.
-Controller will look like
 
 ```$xslt
 public function index(Request $request, $categorySlug, $page = 1)

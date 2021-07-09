@@ -7,7 +7,7 @@
 					<span class="page-link">&lsaquo;</span>
 				</li>
 			@else
-				<?php $params = array_merge($routeParams, [$pageParam => max(1, $currentPage - 1)]); ?>
+				<?php $params = array_merge($routeParams, [$pageParam => $currentPage - 1 > 1 ? $currentPage - 1 : NULL]); ?>
 				<li class="page-item">
 					<a href="{{route($routeName, $params)}}" class="page-link">&lsaquo;</a>
 				</li>
@@ -23,7 +23,7 @@
 						<span class="page-link">{{$step}}</span>
 					</li>
 				@else
-					<?php $params = array_merge($routeParams, [$pageParam => $step]); ?>
+					<?php $params = array_merge($routeParams, [$pageParam => $step > 1 ? $step : NULL]); ?>
 					<li class="page-item">
 						<a href="{{route($routeName, $params)}}" class="page-link">{{$step}}</a>
 					</li>
