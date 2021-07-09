@@ -72,7 +72,7 @@ class Paginator
 		$pageCount = (int) ceil($this->totalCount / $this->perPage);
 		$lastPage = 1 + max(0, $pageCount - 1);
 
-		if ($this->totalCount / $this->perPage < 2)
+		if ($pageCount < 2)
 		{
 			$steps = array($this->currentPage);
 		}
