@@ -48,7 +48,8 @@ class Paginator
 		$routeName,
 		$routeParams = [],
 		$perPage = 15,
-		$pageParam = 'page'
+		$pageParam = 'page',
+		$sideItemsCount = 3
 	) {
 		$this->request = $request;
 		$this->model = $model;
@@ -56,6 +57,7 @@ class Paginator
 		$this->routeParams = $routeParams;
 		$this->pageParam = $pageParam;
 		$this->perPage = $perPage;
+		$this->sideItemsCount = $sideItemsCount;
 
 		$this->currentPage = $request->route()->parameter($pageParam) ?: ($request->query($pageParam) ?: 1);
 
