@@ -35,7 +35,7 @@ The index action displays all articles in required category.
 ```$xslt
 public function index(Request $request, $categorySlug, $page = 1)
 {
-    $category = Category::where('slug', $slug)->first()
+    $category = Category::where('slug', $categorySlug)->first()
     
     if( ! $category ) abort(404);
     
