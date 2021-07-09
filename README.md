@@ -17,12 +17,14 @@ https://example.com/category/4
 https://example.com/category?page=4
 ```
 
-##Installation
+Installation
+------------
 ```
 composer install camohub/paginator
 ```
 
-##Examples
+Examples
+------------
 
 Lets imagine a controller for articles with route
 ```$xslt
@@ -56,6 +58,9 @@ Internal implementation looks like
 ```$xslt
 $this->items = $this->model->skip($this->skip)->take($this->perPage)->get();
 ```
+
+Options
+-----------
 
 Paginator requires 4 non optional parameters. 
 1. Request object
