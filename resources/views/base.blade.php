@@ -15,8 +15,8 @@
 
 		@foreach( $steps as $step )
 			@if( $step == $currentPage )
-				<li class="page-item">
-					<span class="page-link active">{{$step}}</span>
+				<li class="page-item active">
+					<span class="page-link">{{$step}}</span>
 				</li>
 			@else
 				<?php $params = array_merge($routeParams, [$pageParam => $step]); ?>
