@@ -78,9 +78,9 @@ In addition there are few optional parameters which can be used to configure the
 1. Route parameters - route paremeters without page parameter. Page param will be merged in template. Default is [].
 2. pageParam - the name of the route parameter which represents the page. Default is "page".
 Packege will look for `$request->route()->parameter($pageParam)` or `$request->query($pageParam)`
-3. perPage - items per page
-4. sideItemsCount - the number it items around the current page in paginator. It is ekvivalent 
-of Laravel native ->onEachSide() paginator method. 
+3. perPage - items per page. Default is 15.
+4. sideItemsCount - the number of items around the current page in paginator. 
+It is ekvivalent of Laravel native ->onEachSide() paginator method. Default is 3.
 
 You can override the whole paginator with simple MyPaginator extends Paginator 
 and also publish the template files and rewrites it. 

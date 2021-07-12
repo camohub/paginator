@@ -39,7 +39,7 @@ class Paginator
 
 
 	/** @var int  */
-	public $sideItemsCount = 3;
+	public $sideItemsCount;
 
 
 	public function __construct(
