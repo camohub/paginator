@@ -27,12 +27,12 @@ Examples
 ------------
 
 Lets imagine a controller for articles with route
-```$xslt
+```$php
 Route::get('/{categorySlug}/{page?}', 'ArticleController@index')->name('articles');
 ```
 The index action displays all articles in required category.
 
-```$xslt
+```$php
 public function index(Request $request, $categorySlug, $page = 1)
 {
     $category = Category::where('slug', $categorySlug)->first()
@@ -54,8 +54,16 @@ Paginator __construct() method expects second parameter to be query builder
 which can call skip() and take() methods to paginate the collection.
 
 Internal implementation looks like
-```$xslt
+```$php
 $this->items = $this->model->skip($this->skip)->take($this->perPage)->get();
+```
+The view could look like
+```$php
+@foreach( $articles as $a ) 
+... 
+@endforeach 
+
+{{$paginator->render()}}
 ```
 
 Options
