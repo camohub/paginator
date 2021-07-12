@@ -31,8 +31,9 @@
 			@endforeach
 
 			@if( $currentPage === $lastPage )
-				<li class="page-item disabled"></li>
-				<span class="page-link">&rsaquo;</span>
+				<li class="page-item disabled">
+					<span class="page-link">&rsaquo;</span>
+				</li>
 			@else
 				<?php $params = array_merge($routeParams, [$pageParam => min($currentPage + 1, $lastPage)]); ?>
 				<li class="page-item">
