@@ -1,5 +1,3 @@
-<html><meta name="google-site-verification" content="JKVE5Y1-Co0w6pwbSGeJA8qXFXDg9e1_KB4B7G2I2P0" /></html>
-
 # camohub/paginator
 ## Laravel paginator for routes or route based pagination for Laravel :)
 
