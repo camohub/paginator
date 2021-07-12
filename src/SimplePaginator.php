@@ -79,7 +79,7 @@ class SimplePaginator
 		else
 		{
 			$min = max(1, $this->currentPage - 1);
-			$max = min($lastPage, $this->currentPage + 1);
+			$max = min($this->currentPage, $this->currentPage + 1);
 			$steps = range($min, $max);
 		}
 
