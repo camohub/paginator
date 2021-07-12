@@ -48,8 +48,8 @@ class SimplePaginator
 		$routeParams = [],
 		$perPage = 15,
 		$pageParam = 'page',
-		$prev = 'Prev',
-		$next = 'Next'
+		$prev = '&lsaquo; Prev',
+		$next = 'Next &rsaquo;'
 	) {
 		$this->request = $request;
 		$this->model = $model;
@@ -90,6 +90,8 @@ class SimplePaginator
 			'routeName' => $this->routeName,
 			'routeParams' => $this->routeParams,
 			'pageParam' => $this->pageParam,
+			'prev' => $this->prev,
+			'next' => $this->next,
 		]);
 	}
 
