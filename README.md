@@ -85,3 +85,9 @@ It is ekvivalent of Laravel native ->onEachSide() paginator method. Default is 3
 You can override the whole paginator with simple MyPaginator extends Paginator 
 and also publish the template files and rewrites it. 
 Current template is based on Bootstrap 4.
+
+##Simple paginator
+There is also **SimplePaginator** class to create simple prev next navigation. 
+```php
+$paginator = new Paginator($request, $category->articles(), 'articles', ['categorySlug' => $categorySlug]);
+```
