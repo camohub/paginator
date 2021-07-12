@@ -74,13 +74,13 @@ class SimplePaginator
 
 		if ($pageCount < 2)
 		{
-			$steps = [1];
+			$steps = [];
 		}
 		else
 		{
 			$min = max(1, $this->currentPage - 1);
-			$max = min($this->currentPage, $this->currentPage + 1);
-			$steps = range($min, $max);
+			$max = min($pageCount, $this->currentPage + 1);
+			$steps = [$min, $max];
 		}
 
 		return view('camohubPaginator::simple', [
