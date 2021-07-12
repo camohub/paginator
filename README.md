@@ -57,7 +57,7 @@ Internal implementation looks like
 ```$php
 $this->items = $this->model->skip($this->skip)->take($this->perPage)->get();
 ```
-The view could look like
+and the view will look like
 ```$php
 @foreach( $articles as $a ) 
 ... 
