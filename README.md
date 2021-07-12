@@ -1,5 +1,5 @@
 # camohub/paginator
-Paginator component for Laravel
+## Laravel paginator for routes or route based pagination for Laravel :)
 
 This package solves the problem with native Laravel paginator, 
 which generates urls with query string parameters for the page.
